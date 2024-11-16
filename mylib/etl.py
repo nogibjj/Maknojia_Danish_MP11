@@ -4,7 +4,6 @@ import os
 import json
 import base64
 from pyspark.sql import SparkSession
-#from pyspark.sql.types import IntegerType, StructType, StructField, StringType, FloatType
 from pyspark.sql.functions import col, when, monotonically_increasing_id
 #from pyspark.sql.types import IntegerType
 
@@ -86,7 +85,7 @@ def transform_and_load(dataset=FILESTORE_PATH+"/WRRankingsWeek5.csv"):
     # Read the CSV file with the original schema (infer column types)
     df = spark.read.csv(dataset, header=True, inferSchema=True)
 
-    # Rename columns temporarily for transformation (to sanitize them)
+
     df = df.withColumnRenamed("PLAYER NAME", "PLAYER_NAME") \
            .withColumnRenamed("START/SIT", "START_SIT") \
            .withColumnRenamed("PROJ. FPTS", "PROJ_FPTS") \
