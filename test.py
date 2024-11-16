@@ -12,7 +12,7 @@ FILESTORE_PATH = "dbfs:/FileStore/danish_mini_project11"
 
 # Check if environment variables are loaded properly
 if not server_h or not access_token:
-    raise ValueError("SERVER_HOSTNAME or ACCESS_TOKEN is not set in the environment variables.")
+    raise ValueError("Not set in the environment variables.")
 
 # Construct the URL
 url = f"https://{server_h}/api/2.0"
@@ -35,7 +35,7 @@ def test_databricks():
     if check_filestore_path(FILESTORE_PATH, headers):
         print(f"File path {FILESTORE_PATH} exists.")
     else:
-        print(f"File path {FILESTORE_PATH} does not exist or there is an authentication issue.")
+        print(f"File path {FILESTORE_PATH} does not exist")
 
 if __name__ == "__main__":
     test_databricks()
