@@ -9,7 +9,7 @@ load_dotenv()
 server_h = os.getenv("SERVER_HOSTNAME")
 access_token = os.getenv("ACCESS_TOKEN")
 FILESTORE_PATH = "dbfs:/FileStore/danish_mini_project11"
-
+# change
 # Check if environment variables are loaded properly
 if not server_h or not access_token:
     raise ValueError("Not set in the environment variables.")
