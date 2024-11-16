@@ -1,35 +1,36 @@
-"""
-Test Databricks functionality for WRRankings data pipeline.
-"""
-
-import requests
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
+from pyspark.sql import SparkSession
 
 # Load environment variables
 load_dotenv()
-server_h = os.getenv("DATABRICKS_HOST")
-access_token = os.getenv("DATABRICKS_TOKEN")
-FILESTORE_PATH = "dbfs:/FileStore/WRRankings"
-url = "https://" + server_h + "/api/2.0"
 
+def test_spark_connection():
+    # Fetch configuration from .env
+    server_hostname = os.getenv('SERVER_HOSTNAME')
+    access_token = os.getenv('ACCESS_TOKEN')
+    http_path = os.getenv('HTTP_PATH')
 
-# Function to check if a file path exists and auth settings still work
-def check_filestore_path(path, headers):
+    # Check if variables are properly loaded
+    assert server_hostname, "SERVER_HOSTNAME is not set in .env"
+    assert access_token, "ACCESS_TOKEN is not set in .env"
+    assert http_path, "HTTP_PATH is not set in .env"
+
+    # Initialize Spark session
+    spark = SparkSession.builder \
+        .appName("TestSparkConnection") \
+        .config("spark.databricks.service.serverHostname", server_hostname) \
+        .config("spark.databricks.service.token", access_token) \
+        .config("spark.databricks.service.httpPath", http_path) \
+        .getOrCreate()
+
     try:
-        response = requests.get(url + f"/dbfs/get-status?path={path}", headers=headers)
-        response.raise_for_status()
-        return response.json().get("path") is not None
-    except Exception as e:
-        print(f"Error checking file path: {e}")
-        return False
-
-
-# Test if the specified FILESTORE_PATH exists
-def test_databricks():
-    headers = {"Authorization": f"Bearer {access_token}"}
-    assert check_filestore_path(FILESTORE_PATH, headers) is True
-
+        # Test a simple query or operation
+        df = spark.range(10)
+        assert df.count() == 10, "Test query failed!"
+        print("Spark connection test passed.")
+    finally:
+        spark.stop()
 
 if __name__ == "__main__":
-    test_databricks()
+    test_spark_connection()
