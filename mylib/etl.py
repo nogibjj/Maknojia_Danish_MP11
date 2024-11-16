@@ -66,7 +66,8 @@ def upload_file_from_url(url, dbfs_path, overwrite):
 
 # ETL Functions
 def extract(
-    source_url="https://raw.githubusercontent.com/nogibjj/Maknojia_Danish_MP5/refs/heads/main/data/WRRankingsWeek5.csv",
+    source_url=
+    "https://raw.githubusercontent.com/nogibjj/Maknojia_Danish_MP5/refs/heads/main/data/WRRankingsWeek5.csv",
     target_path=FILESTORE_PATH+"/WRRankingsWeek5.csv",
     directory=FILESTORE_PATH,
     overwrite=True
