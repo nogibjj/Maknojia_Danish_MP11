@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from pyspark.sql import SparkSession
+
 
 # Load environment variables
 load_dotenv()
