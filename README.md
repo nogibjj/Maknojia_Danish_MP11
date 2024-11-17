@@ -18,11 +18,12 @@ SQL Query: Running a query on the tables in the database which joins tables and 
 ## Components
 
 1. Create a cluster on Databricks
-
+![Logo](Cluster.png)
 2. Create a Github Repo and Import into workspace
-
+![Logo](Importgit.png)
 3. Design ETL pipeline in workspace follow proper guidelines & implement CI/CD
 
 4. Link jobs in Github repo
 
 5. Run ETL & Check Task Dependencies 
+![Logo](jobs.png)
