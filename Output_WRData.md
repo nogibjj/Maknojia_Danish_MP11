@@ -111,3 +111,27 @@ The truncated output is:
 |  8 | JAC    |              6 |
 |  9 | CLE    |              6 |
 
+The operation is query data
+
+The query is 
+        SELECT TEAM, COUNT(*) AS player_count 
+        FROM WRRankings_delta 
+        GROUP BY TEAM 
+        ORDER BY player_count DESC
+    
+
+The truncated output is: 
+
+|    | TEAM   |   player_count |
+|---:|:-------|---------------:|
+|  0 | NE     |              7 |
+|  1 | MIA    |              7 |
+|  2 | HOU    |              7 |
+|  3 | ARI    |              6 |
+|  4 | MIN    |              6 |
+|  5 | SEA    |              6 |
+|  6 | BAL    |              6 |
+|  7 | CIN    |              6 |
+|  8 | JAC    |              6 |
+|  9 | CLE    |              6 |
+
